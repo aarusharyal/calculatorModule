@@ -2,6 +2,16 @@
 
 This repository contains a simple calculator module for performing basic mathematical operations.
 
+## Features
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Modulo (Coming soon)
+- Length Conversion
+- Clear/reset functionality (Coming soon)
+
 ---
 
 ## Usage
