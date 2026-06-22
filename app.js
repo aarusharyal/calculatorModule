@@ -71,15 +71,27 @@ function askQuestion() {
                 switch (choice) {
                     case "1":
                         console.log(`Result: ${add(num1, num2)}`);
+                        console.log("\n");
+                        console.log("------------------------------");
+                        console.log("\n");
                         break;
                     case "2":
                         console.log(`Result: ${sub(num1, num2)}`);
+                        console.log("\n");
+                        console.log("------------------------------");
+                        console.log("\n");
                         break;
                     case "3":
                         console.log(`Result: ${product(num1, num2)}`);
+                        console.log("\n");
+                        console.log("------------------------------");
+                        console.log("\n");
                         break;
                     case "4":
                         console.log(`Result: ${division(num1, num2)}`);
+                        console.log("\n");
+                        console.log("------------------------------");
+                        console.log("\n");
                         break;
                     case "5":
                         rl.question("Enter the length value: ", (value) => {
@@ -87,6 +99,9 @@ function askQuestion() {
                                 rl.question("Enter the unit to convert to: ", (toUnit) => {
                                     value = Number(value);
                                     console.log(`Result: ${lengthConverter(value, fromUnit, toUnit)}`);
+                                    console.log("\n");
+                                    console.log("------------------------------");
+                                    console.log("\n");
                                     askQuestion();
                                 });
                             });
