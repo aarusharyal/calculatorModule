@@ -18,9 +18,10 @@ function askQuestion() {
     console.log("3. Multiplication");
     console.log("4. Division");
     console.log("5. Length Conversion");
-    console.log("6. Exit");
-    rl.question("Enter your choice (1-6): ", (choice) => {
-        if (choice === "6") {
+    console.log("6. Time Conversion");
+    console.log("7. Exit");
+    rl.question("Enter your choice (1-7): ", (choice) => {
+        if (choice === "7") {
             console.log("Exiting the calculator.");
             rl.close();
             return;
@@ -58,8 +59,8 @@ function askQuestion() {
             });
             return;
         } 
-        else if (!["1", "2", "3", "4", "5", "6"].includes(choice)) {
-            console.log("Invalid choice. Please select a number between 1 and 6.");
+        else if (!["1", "2", "3", "4", "5", "6", "7"].includes(choice)) {
+            console.log("Invalid choice. Please select a number between 1 and 7.");
             askQuestion();
             return;
         }
@@ -107,8 +108,26 @@ function askQuestion() {
                             });
                         });
                         break;
+                    case "6":
+                        rl.question("Enter the time value: ", (value) => {
+                            rl.question("Enter the unit to convert from: ", (fromUnit) => {
+                                rl.question("Enter the unit to convert to: ", (toUnit) => {
+                                    value = Number(value);
+                                    console.log(`Result: ${timeConverter(value, fromUnit, toUnit)}`);
+                                    console.log("\n");
+                                    console.log("------------------------------");
+                                    console.log("\n");
+                                    askQuestion();
+                                });
+                            });
+                        });
+                        break;
+                    case "7":
+                        console.log("Exiting the application.");
+                        rl.close();
+                        break;
                     default:
-                        console.log("Invalid choice. Please select a number between 1 and 6.");
+                        console.log("Invalid choice. Please select a number between 1 and 7.");
                 }
                 // Ask again for the next operation
                 console.log("\n");
