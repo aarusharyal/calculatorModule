@@ -5,12 +5,17 @@ const product = require("./multiplication");
 const division = require("./division");
 const lengthConverter = require("./lengthConverter");
 const timeConverter = require("./timeConverter");
+const currencyConverter = require("./currencyConverter");
 
 const rl = readline.createInterface({ 
     input: process.stdin,
     output: process.stdout
 });
 
+let lastResult = null;
+
+
+//Ask the user if they want to continue or exit the calculator.
 function askToContinue() {
     rl.question("Do you want to continue? (y/n): ", (answer) => {
         const normalized = answer.trim().toLowerCase();
@@ -26,6 +31,7 @@ function askToContinue() {
     });
 }
 
+// Ask the user to select an operation and perform the corresponding calculation.
 function askQuestion() {
 
     console.log("Select an operation:");
@@ -35,14 +41,19 @@ function askQuestion() {
     console.log("4. Division");
     console.log("5. Length Conversion");
     console.log("6. Time Conversion");
-    console.log("7. Exit");
-    rl.question("Enter your choice (1-7): ", (choice) => {
-        if (choice === "7") {
+    console.log("7. Currency Conversion");
+    console.log("9. Exit");
+    rl.question("Enter your choice (1-9): ", (choice) => {
+        if (choice === "9")
+        // Exit the calculator if the user selects option 9.    
+        {
             console.log("Exiting the calculator.");
             rl.close();
             return;
         }
-        else if (choice === "5") {
+        else if (choice === "5") 
+        // Perform length conversion if the user selects option 5.    
+        {
             console.log("1. meter");
             console.log("2. kilometer");
             console.log("3. millimeter");
@@ -103,8 +114,28 @@ function askQuestion() {
                         });
             return;
         }
-        else if (!["1", "2", "3", "4", "5", "6", "7"].includes(choice)) {
-            console.log("Invalid choice. Please select a number between 1 and 7.");
+        else if( choice === "7") {
+            console.log("1. USD");
+            console.log("2. EUR");
+            console.log("3. NRP");
+            rl.question("Enter the unit to convert from: ", (fromCurrency) => {
+                if(fromCurrency === "1") fromCurrency = "USD";
+                else if(fromCurrency === "2") fromCurrency = "EUR";
+                else if(fromCurrency === "3") fromCurrency = "NRP";
+                rl.question("Enter the unit to convert to: ", (toCurrency) => {
+                    if(toCurrency === "1") toCurrency = "USD";
+                    else if(toCurrency === "2") toCurrency = "EUR";
+                    else if(toCurrency === "3") toCurrency = "NRP";
+                    rl.question("Enter the currency value: ", (value) => {
+                        value = Number(value);
+                        console.log(`Result: ${currencyConverter(value, fromCurrency, toCurrency)}`);
+                        askToContinue();
+                    });
+                });
+            });
+        }
+        else if (!["1", "2", "3", "4", "5", "6", "9"].includes(choice)) {
+            console.log("Invalid choice. Please select a number between 1 and 9.");
             askQuestion();
             return;
         }
