@@ -8,8 +8,10 @@ This repository contains a simple calculator module for performing basic mathema
 - Subtraction
 - Multiplication
 - Division
-- Modulo (Coming soon)
 - Length Conversion
+- Currency Conversion
+- Time Conversion
+- Modulo (Coming soon)
 - Clear/reset functionality (Coming soon)
 
 ---
