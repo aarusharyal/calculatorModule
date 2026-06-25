@@ -2,14 +2,14 @@ const add = require("./add");
 const sub = require("./subtraction");
 const product = require("./multiplication");
 const division = require("./division");
-const readline = require("readline");
+// const readline = require("readline");
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
-function askToContinue(askQuestion)
+function askToContinue(rl, askQuestion)
 {
     rl.question("Do you want to continue? (y/n): ", (answer) => 
     {
@@ -49,43 +49,42 @@ function result(rl, res, askQuestion)
             rl.question("Enter the third number: ", (num3) =>
             {
                 num3 = Number(num3);
-                let output;
                 switch (choice)
                 {
                     case 1:
                         res.result = add(res.result, num3);
                         console.log(`Result: ${res.result}`);
-                        askToContinue(askQuestion);
+                        askToContinue(rl, askQuestion);
                         break;
                     case 2:
                         res.result = sub(res.result, num3);
                         console.log(`Result: ${res.result}`);
-                        askToContinue(askQuestion);
+                        askToContinue(rl, askQuestion);
                         break;
                     case 3:
                         res.result = product(res.result, num3);
                         console.log(`Result: ${res.result}`);
-                        askToContinue(askQuestion);
+                        askToContinue(rl, askQuestion);
                         break;
                     case 4:
                         if (num3 === 0)
                         {
                             console.log("Error: Division by zero is not allowed.");
-                            askToContinue(askQuestion);
+                            askToContinue(rl, askQuestion);
                             break;
                         }
                         res.result = division(res.result, num3);
                         console.log(`Result: ${res.result}`);
-                        askToContinue(askQuestion);
+                        askToContinue(rl, askQuestion);
                         break;
-                    default:
-                        console.log("Invalid choice. Please select a number between 1 and 4.");
-                        askToContinue(askQuestion);
-                        rl.close();
-                }
-
-            });
-        }
+                    }        
+                });
+            }
+            else{
+            console.log("Invalid choice. Please select a number between 1 and 4.");
+            askToContinue(rl, askQuestion);
+            rl.close();
+            }
     });
 }
 module.exports = result;

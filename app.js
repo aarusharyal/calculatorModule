@@ -138,11 +138,13 @@ function askQuestion() {
                     });
                 });
             });
+            return;
         }
         else if (choice === "8") {
             result(rl, res, askQuestion);
+            return;
         }
-        else if (!["1", "2", "3", "4", "5", "6", "9"].includes(choice)) {
+        else if (!["1", "2", "3", "4", "5", "6","7", "8", "9"].includes(choice)) {
             console.log("Invalid choice. Please select a number between 1 and 9.");
             askQuestion();
             return;
