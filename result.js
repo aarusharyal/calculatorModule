@@ -9,22 +9,29 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-function askToContinue(askQuestion) {
-    rl.question("Do you want to continue? (y/n): ", (answer) => {
+function askToContinue(askQuestion)
+{
+    rl.question("Do you want to continue? (y/n): ", (answer) => 
+    {
         const normalized = answer.trim().toLowerCase();
-        if (normalized === "y" || normalized === "yes") {
+        if (normalized === "y" || normalized === "yes")
+        {
             console.log("------------------------------");
             // console.log("\n");
             askQuestion();
-        } else {
+        }
+        else
+        {
             console.log("Exiting the calculator.");
             rl.close();
         }
     });
 }
 
-function result(rl, res, askQuestion) {
-    if (res.result === null) {
+function result(rl, res, askQuestion) 
+{
+    if (res.result === null)
+    {
         console.log("No previous result found. Please perform a calculation first.");
         askQuestion();
         return;

@@ -22,7 +22,6 @@ function askToContinue() {
     rl.question("Do you want to continue? (y/n): ", (answer) => {
         const normalized = answer.trim().toLowerCase();
         if (normalized === "y" || normalized === "yes") {
-            console.log("\n");
             console.log("------------------------------");
             console.log("\n");
             askQuestion();
@@ -90,7 +89,9 @@ function askQuestion() {
             });
             return;
         } 
-        else if (choice === "6") {
+        else if (choice === "6") 
+        // Perform time conversion if the user selects option 6.
+    {
                         console.log("1. second");
                         console.log("2. minute");
                         console.log("3. hour");
