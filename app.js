@@ -6,13 +6,15 @@ const division = require("./division");
 const lengthConverter = require("./lengthConverter");
 const timeConverter = require("./timeConverter");
 const currencyConverter = require("./currencyConverter");
+const result = require("./result");
+const { constrainedMemory } = require("process");
 
 const rl = readline.createInterface({ 
     input: process.stdin,
     output: process.stdout
 });
 
-let lastResult = null;
+const res = { result: null };
 
 
 //Ask the user if they want to continue or exit the calculator.
@@ -30,6 +32,7 @@ function askToContinue() {
         }
     });
 }
+// module.exports = { askToContinue };
 
 // Ask the user to select an operation and perform the corresponding calculation.
 function askQuestion() {
@@ -42,6 +45,7 @@ function askQuestion() {
     console.log("5. Length Conversion");
     console.log("6. Time Conversion");
     console.log("7. Currency Conversion");
+    console.log("8. Previous Result");
     console.log("9. Exit");
     rl.question("Enter your choice (1-9): ", (choice) => {
         if (choice === "9")
@@ -134,6 +138,9 @@ function askQuestion() {
                 });
             });
         }
+        else if (choice === "8") {
+            result(rl, res, askQuestion);
+        }
         else if (!["1", "2", "3", "4", "5", "6", "9"].includes(choice)) {
             console.log("Invalid choice. Please select a number between 1 and 9.");
             askQuestion();
@@ -146,19 +153,23 @@ function askQuestion() {
                 num2 = Number(num2);
                 switch (choice) {
                     case "1":
-                        console.log(`Result: ${add(num1, num2)}`);
+                        res.result = add(num1, num2);
+                        console.log(`Result: ${res.result}`);
                         askToContinue();
                         break;
                     case "2":
-                        console.log(`Result: ${sub(num1, num2)}`);
+                        res.result = sub(num1, num2);
+                        console.log(`Result: ${res.result}`);
                         askToContinue();
                         break;
                     case "3":
-                        console.log(`Result: ${product(num1, num2)}`);
+                        res.result = product(num1, num2);
+                        console.log(`Result: ${res.result}`);
                         askToContinue();
                         break;
                     case "4":
-                        console.log(`Result: ${division(num1, num2)}`);
+                        res.result = division(num1, num2);
+                        console.log(`Result: ${res.result}`);
                         askToContinue();
                         break;
                     case "5":
