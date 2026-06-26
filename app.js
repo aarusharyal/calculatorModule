@@ -9,11 +9,13 @@ const currencyConverter = require("./currencyConverter");
 const result = require("./result");
 const { constrainedMemory } = require("process");
 
+// Initilalization of the readline module to read input from the command line and output to the console.
 const rl = readline.createInterface({ 
     input: process.stdin,
     output: process.stdout
 });
 
+// Object to store the previous result of calculations.
 const res = { result: null };
 
 
@@ -96,7 +98,9 @@ function askQuestion() {
                         console.log("2. minute");
                         console.log("3. hour");
                         console.log("4. day");
-                        rl.question("Enter the unit to convert from: ", (fromUnit) => {
+                        rl.question("Enter the unit to convert from: ", (fromUnit) => 
+                        // Convert the user's choice to the corresponding time unit.
+                        {
                             if(fromUnit === "1") fromUnit = "second";
                             else if(fromUnit === "2") fromUnit = "minute";
                             else if(fromUnit === "3") fromUnit = "hour";
@@ -119,7 +123,9 @@ function askQuestion() {
                         });
             return;
         }
-        else if( choice === "7") {
+        else if( choice === "7")
+        // Perform currency conversion if the user selects option 7.
+        {
             console.log("1. USD");
             console.log("2. EUR");
             console.log("3. NRP");
@@ -144,7 +150,9 @@ function askQuestion() {
             result(rl, res, askQuestion);
             return;
         }
-        else if (!["1", "2", "3", "4", "5", "6","7", "8", "9"].includes(choice)) {
+        else if (!["1", "2", "3", "4", "5", "6","7", "8", "9"].includes(choice)) 
+            // Handle invalid choices by prompting the user to select a valid option.
+        {
             console.log("Invalid choice. Please select a number between 1 and 9.");
             askQuestion();
             return;
@@ -186,16 +194,18 @@ function askQuestion() {
                             });
                         });
                         break;
-                    case "7":
+                    case "9":
+                        // Perform currency conversion if the user selects option 9.
                         console.log("Exiting the application.");
                         rl.close();
                         break;
                     default:
-                        console.log("Invalid choice. Please select a number between 1 and 7.");
+                        console.log("Invalid choice. Please select a number between 1 and 9.");
                         askToContinue();
                 }
             });
         });
     });
 }
-askQuestion(); 
+// Start the calculator by asking the user to select an operation.
+askQuestion();
