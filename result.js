@@ -2,19 +2,16 @@ const add = require("./add");
 const sub = require("./subtraction");
 const product = require("./multiplication");
 const division = require("./division");
-// const readline = require("readline");
-
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
 
 function askToContinue(rl, askQuestion)
+// Function to ask the user if they want to continue using the calculator.
 {
     rl.question("Do you want to continue? (y/n): ", (answer) => 
     {
+        // Normalize the user's input to handle different cases and whitespace.
         const normalized = answer.trim().toLowerCase();
         if (normalized === "y" || normalized === "yes")
+        // If the user wants to continue, display a separator and ask the next question.
         {
             console.log("------------------------------");
             // console.log("\n");
