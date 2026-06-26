@@ -81,7 +81,9 @@ function result(rl, res, askQuestion)
                     }        
                 });
             }
-            else{
+            else
+            // Handle invalid choices by prompting the user to select a valid option.
+            {
             console.log("Invalid choice. Please select a number between 1 and 4.");
             askToContinue(rl, askQuestion);
             rl.close();
