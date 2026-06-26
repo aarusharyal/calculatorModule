@@ -25,9 +25,11 @@ function askToContinue(rl, askQuestion)
     });
 }
 
-function result(rl, res, askQuestion) 
+function result(rl, res, askQuestion)
+// Function to handle operations on the previous result.
 {
     if (res.result === null)
+    // If there is no previous result, inform the user and ask for a new operation.
     {
         console.log("No previous result found. Please perform a calculation first.");
         askQuestion();
@@ -39,7 +41,9 @@ function result(rl, res, askQuestion)
     console.log("3. Multiply");
     console.log("4. Divide");
 
-    rl.question("Enter your choice (1-4): ", (choice) => {
+    rl.question("Enter your choice (1-4): ", (choice) => 
+    // Ask the user to select an operation to perform on the previous result.
+    {
         choice =Number(choice);
         if (choice === 1 || choice === 2 || choice === 3 || choice === 4)
         {
