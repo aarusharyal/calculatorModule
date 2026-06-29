@@ -146,7 +146,9 @@ function askQuestion() {
             });
             return;
         }
-        else if (choice === "8") {
+        else if (choice === "8") 
+            // Display the previous result if the user selects option 8.
+        {
             result(rl, res, askQuestion);
             return;
         }
@@ -200,6 +202,7 @@ function askQuestion() {
                         rl.close();
                         break;
                     default:
+                        // Ask the user to input a valid choice
                         console.log("Invalid choice. Please select a number between 1 and 9.");
                         askToContinue();
                 }
