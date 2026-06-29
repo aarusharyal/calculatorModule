@@ -1,5 +1,7 @@
 function lengthConverter(value, fromUnit, toUnit) {
-    const conversionRates = {
+    const conversionRates = 
+    // Added conversion metrics to the module.
+    {
         'meter': 1,
         'kilometer': 0.001,
         'centimeter': 100,
@@ -12,4 +14,5 @@ function lengthConverter(value, fromUnit, toUnit) {
     const valueInMeters = value / conversionRates[fromUnit];
     return valueInMeters * conversionRates[toUnit];
 }
+// Exported the Module
 module.exports = lengthConverter;
